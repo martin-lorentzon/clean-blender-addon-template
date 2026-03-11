@@ -1,20 +1,33 @@
+import bpy
 from bpy.types import AddonPreferences
-from bpy.props import StringProperty, BoolProperty
+from bpy.props import StringProperty
 
 
-class TemplatePreferences(AddonPreferences):  # {AddonNamePreferences}
+class YourAddonPreferences(AddonPreferences):  # <AddonNamePreferences>
     bl_idname = __package__
 
-    setting_1: StringProperty(
-        name="Setting 1",
-        subtype="DIR_PATH"
+    # Examples
+    username: StringProperty(
+        name="Username",
+        default="User"
     )
-    setting_2: BoolProperty(
-        name="Setting 2"
+    password: StringProperty(
+        name="Password",
+        subtype="PASSWORD"
     )
 
     def draw(self, context):
         layout = self.layout
+        layout.use_property_split = True
 
-        layout.prop(self, "setting_1")
-        layout.prop(self, "setting_2")
+        layout.prop(self, "username")
+        layout.prop(self, "password")
+
+
+# ——————————————————————————————————————————————————————————————————————
+# MARK: REGISTRATION
+# ——————————————————————————————————————————————————————————————————————
+
+
+register, unregister = bpy.utils.register_classes_factory((YourAddonPreferences,))
+# NOTE: The trailing comma here is required to make a tuple

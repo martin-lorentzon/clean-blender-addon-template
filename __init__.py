@@ -1,20 +1,24 @@
 bl_info = {
-    "name": "Template Add-on Name",
-    "description": "Template add-on description.",
-    "author": "Your Name",
+    "name": "Your Add-on Name",
+    "description": "Your add-on description.",
+    "author": "Your Signature",
     "version": (1, 0, 0),
-    "blender": (4, 2, 0),
-    "location": "3D Viewport > N Panel > Hello World",
+    "blender": (5, 1, 0),
+    "location": "3D Viewport > Sidebar > Hello World",
     # "doc_url": "https://github.com/{username}/{repo-name}",
     # "tracker_url": "https://github.com/{username}/{repo-name}/issues",
-    # "warning": "Pre-Release",
+    # "warning": "Experimental",
     "support": "COMMUNITY",
-    "category": "Choose a category",  # Try to fit into an existing category (or use your department's name)
+    "category": "Some Category",
+    # Categories: 3D View, Add Curve, Add Mesh, Animation, Bake, Camera, Compositing,
+    # Development, Game Engine, Grease Pencil, Import-Export, Lighting, Material,
+    # Mesh, Node, Object, Paint, Physics, Render, Rigging, Scene, Sequencer,
+    # System, Text Editor, Tracking, UV, User Interface
 }
 
-"""
-Make sure to update package.bat with the path to your Blender executable
-"""
+
+# NOTE: Edit package.bat and specify the path to your blender.exe file
+
 
 # ——————————————————————————————————————————————————————————————————————
 # MARK: IMPORTS
@@ -22,19 +26,21 @@ Make sure to update package.bat with the path to your Blender executable
 
 
 # fmt: off
-if "bpy" in locals():
+_needs_reload = "bpy" in locals()
+
+import bpy
+from . import addon_preferences
+from . import hello_world_module
+from . import simple_module
+
+
+if _needs_reload:
     from importlib import reload
 
-    # Modules to reload during development go here
+    # Specify the modules to reload during development
     reload(addon_preferences)
     reload(hello_world_module)
-else:
-    # ...and here
-    from . import addon_preferences
-    from . import hello_world_module
-
-# ...but not here
-import bpy
+    reload(simple_module)
 # fmt: on
 
 
@@ -43,27 +49,21 @@ import bpy
 # ——————————————————————————————————————————————————————————————————————
 
 
-# Classes Blender should know about go in this list
-classes = [
-    addon_preferences.TemplatePreferences,
-    hello_world_module.HelloWorldProperties,
-    hello_world_module.TEMPLATE_PT_hello_world_panel,
-    hello_world_module.TEMPLATE_OT_hello_world_operator,
+modules = [
+    addon_preferences,
+    hello_world_module,
+    simple_module,
 ]
 
 
 def register():
-    for cls in classes:
-        bpy.utils.register_class(cls)
-
-    bpy.types.Scene.hello_world_properties = bpy.props.PointerProperty(type=hello_world_module.HelloWorldProperties)
+    for module in modules:
+        module.register()
 
 
 def unregister():
-    for cls in reversed(classes):
-        bpy.utils.unregister_class(cls)
-
-    del bpy.types.Scene.hello_world_properties
+    for module in reversed(modules):
+        module.unregister()
 
 
 if __name__ == "__main__":
