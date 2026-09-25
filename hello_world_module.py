@@ -1,5 +1,5 @@
 import bpy
-from bpy.props import EnumProperty, StringProperty
+from bpy.props import EnumProperty, PointerProperty, StringProperty
 
 
 # ——————————————————————————————————————————————————————————————————————
@@ -8,11 +8,11 @@ from bpy.props import EnumProperty, StringProperty
 
 
 class HelloWorldProperties(bpy.types.PropertyGroup):
-    # Examples
+    # Example properties
     color: EnumProperty(
         name="Color",
         items=[
-            ("CYAN", "Cyan", "The color of tropical waters"),
+            ("CYAN", "Cyan", "The color of tropical waters"),  # (identifier, name, description)
             ("MAGENTA", "Magenta", "The color of orchids"),
             ("YELLOW", "Yellow", "The color of a rubber duck"),
         ]
@@ -28,7 +28,7 @@ class HelloWorldProperties(bpy.types.PropertyGroup):
 # ——————————————————————————————————————————————————————————————————————
 
 
-class HELLO_WORLD_PT_main_panel(bpy.types.Panel):
+class HELLO_WORLD_PT_main(bpy.types.Panel):
     bl_label = "Hello World"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
@@ -48,8 +48,8 @@ class HELLO_WORLD_PT_main_panel(bpy.types.Panel):
         layout.prop(props, "message")
         layout.operator("scene.hello_world", text=f"Print {props.message}")
 
-        # This is how we define a subpanel
-        header, panel = layout.panel("my_panel_id", default_closed=True)
+        # This is how we define a subpanel, its id follows the same convention: {MODULE_NAME}_PT_{panel_name}, and must be unique
+        header, panel = layout.panel("HELLO_WORLD_PT_look_inside", default_closed=True)
         header.label(text="Look Inside")
         if panel:
             panel.label(text="Success")
@@ -60,16 +60,19 @@ class HELLO_WORLD_PT_main_panel(bpy.types.Panel):
 # ——————————————————————————————————————————————————————————————————————
 
 
-class HELLO_WORLD_OT_print_hello_world(bpy.types.Operator):
-    bl_idname = "scene.hello_world"  # {category}.{operator_name}
+class SCENE_OT_hello_world(bpy.types.Operator):
+    bl_idname = "scene.hello_world"
     bl_label = "Print Hello, World!"
-    bl_description = "A short description of what the operator does"
-    bl_options = {"REGISTER", "UNDO"}
-    # Some operators shouldn't include an 'UNDO' (e.g. read-only and temporary UI)
-    # bl_options = {"INTERNAL"}  # this would be more suitable in such cases
+    bl_description = "Prints the username, color and message to the console"
+    bl_options = {"REGISTER"}
+    # Common bl_options values:
+    # "REGISTER"     Show in the info window and support the redo (F9) panel
+    # "UNDO"         Push an undo step when finished (required if the operator modifies Blender data)
+    # "INTERNAL"     Hide the operator from search results
+    # "PRESET"       Show a preset button for the operator's settings
 
     @classmethod
-    def poll(cls, context):
+    def poll(cls, context) -> bool:
         return True
 
     def execute(self, context):
@@ -79,7 +82,7 @@ class HELLO_WORLD_OT_print_hello_world(bpy.types.Operator):
         # Similarly, this is how we access property groups
         props = context.scene.hello_world_properties
 
-        print(addon_prefs.username, props.message, sep=": ")
+        print(addon_prefs.username, props.color, props.message, sep=": ")
         return {"FINISHED"}
 
 
@@ -88,20 +91,23 @@ class HELLO_WORLD_OT_print_hello_world(bpy.types.Operator):
 # ——————————————————————————————————————————————————————————————————————
 
 
-basic_register, basic_unregister = bpy.utils.register_classes_factory(
-    (
-        HelloWorldProperties,
-        HELLO_WORLD_PT_main_panel,
-        HELLO_WORLD_OT_print_hello_world,
-    ))
+classes = [
+    HelloWorldProperties,
+    HELLO_WORLD_PT_main,
+    SCENE_OT_hello_world,
+]
+
+# Registers classes in order and unregisters them in reverse order
+basic_register, basic_unregister = bpy.utils.register_classes_factory(classes)
 
 
 # Wrap the generated functions to register additional properties
 def register():
     basic_register()
-    bpy.types.Scene.hello_world_properties = bpy.props.PointerProperty(type=HelloWorldProperties)
+    bpy.types.Scene.hello_world_properties = PointerProperty(type=HelloWorldProperties)
 
 
+# Unregister in the reverse order of registration
 def unregister():
-    basic_unregister()
     del bpy.types.Scene.hello_world_properties
+    basic_unregister()

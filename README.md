@@ -8,7 +8,7 @@ I recommend placing your add-on inside of a [script directory](https://docs.blen
 Some Local Projects or Tools Folder/
 ├── Blender Add-ons/ (script directory)
 │      └── addons/
-│            └── my_useful_tool/ (add-on)
+│            └── my_example_extension/ (add-on)
 ```
 > [!NOTE]
 > Remember to install your newly created script directory in Blender Preferences > File Paths > Script Directories
@@ -16,7 +16,7 @@ Some Local Projects or Tools Folder/
 ## Features
 * Formatted with autopep8
 * Ability to reload in Blender with `bpy.ops.script.reload()`
-* Includes bl_info metadata
+* Includes bl_info metadata (for legacy add-on installs)
 * Includes Blender manifest file
 * Includes examples of add-on preferences, property group, operator and panel
 * Includes a bat file for simple packaging

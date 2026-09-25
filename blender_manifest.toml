@@ -58,19 +58,20 @@ license = [
 # # Keep this a single short sentence without a period (.) at the end.
 # # For longer explanations use the documentation or detail page.
 #
-[permissions]
+# [permissions]
 # network = "Need to sync motion-capture data to server"
-files = "Specify directory path in preferences"
+# files = "Specify directory path in preferences"
 # clipboard = "Copy and paste bone transforms"
 
 # # Optional: advanced build settings.
 # # https://docs.blender.org/manual/en/dev/advanced/extensions/command_line_arguments.html#command-line-args-extension-build
 [build]
-# # These are the default build excluded patterns.
-# # You only need to edit them if you want different options.
+# # Blender's defaults are "__pycache__/", "/.git/" and "/*.zip".
+# # This template also excludes git files, packaging scripts and editor settings.
 paths_exclude_pattern = [
     "__pycache__/",
     "/.git*",
     "/*.zip",
     "/*.bat",
+    "/.vscode/",
 ]

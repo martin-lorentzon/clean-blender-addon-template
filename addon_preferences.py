@@ -1,12 +1,11 @@
 import bpy
-from bpy.types import AddonPreferences
 from bpy.props import StringProperty
 
 
-class YourAddonPreferences(AddonPreferences):  # <AddonNamePreferences>
+class MyExampleExtensionPreferences(bpy.types.AddonPreferences):  # Naming convention: {AddonName}Preferences
     bl_idname = __package__
 
-    # Examples
+    # Example properties
     username: StringProperty(
         name="Username",
         default="User"
@@ -29,5 +28,8 @@ class YourAddonPreferences(AddonPreferences):  # <AddonNamePreferences>
 # ——————————————————————————————————————————————————————————————————————
 
 
-register, unregister = bpy.utils.register_classes_factory((YourAddonPreferences,))
-# NOTE: The trailing comma here is required to make a tuple
+classes = [
+    MyExampleExtensionPreferences,
+]
+
+register, unregister = bpy.utils.register_classes_factory(classes)
