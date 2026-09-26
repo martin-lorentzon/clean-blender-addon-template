@@ -1,4 +1,4 @@
-# Clean Blender Add-on Template
+# Clean Blender Python Add-on Template 🧡🐍
 
 ## Complete structure • Reloadable in Blender • Formatted with autopep8
 
@@ -6,13 +6,13 @@ A commented template for multifile add-on development that is fully compliant wi
 
 ## Table of Contents
 
-- [Using a Script Directory](#using-a-script-directory)
-- [Features](#features)
+- [Using a Script Directory](#-using-a-script-directory)
+- [Features](#-features)
 - [Linting Setup](#linting-setup)
-- [Packaging](#packaging)
-- [How to use the template via GitHub](#how-to-use-the-template-via-github)
+- [Packaging](#-packaging)
+- [How to use the template via GitHub](#-how-to-use-the-template-via-github)
 
-## Using a Script Directory
+## 📁 Using a Script Directory
 
 I recommend placing your add-on inside of a [script directory](https://docs.blender.org/manual/en/latest/editors/preferences/file_paths.html#script-directories) during development for an easy install
 
@@ -26,7 +26,7 @@ Some Local Projects or Tools Folder/
 > [!NOTE]
 > Remember to install your newly created script directory in Blender Preferences > File Paths > Script Directories
 
-## Features
+## 🪄 Features
 
 - Formatted with autopep8
 - Ability to reload in Blender with `bpy.ops.script.reload()`
@@ -46,7 +46,7 @@ Run `setup_linting.bat` to create a local `.venv` with `fake-bpy-module` install
 > [!NOTE]
 > The `.venv` folder is ignored by git and excluded when building the extension
 
-## Packaging
+## 📦 Packaging
 
 Run `package.bat` to build the extension with `blender --command extension build`. The script finds Blender in this order:
 
@@ -62,7 +62,7 @@ setx BLENDER_PATH "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe"
 > [!NOTE]
 > `setx` only affects terminals opened afterwards. If `BLENDER_PATH` is set, it takes priority over `BLENDER_EXE` even when its path is wrong
 
-## How to use the template via GitHub
+## 🚀 How to use the template via GitHub
 
 1. At the top right corner of the repository page, click Use this template
 2. Click Create a new repository
