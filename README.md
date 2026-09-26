@@ -20,9 +20,15 @@ Some Local Projects or Tools Folder/
 * Includes Blender manifest file
 * Includes examples of add-on preferences, property group, operator and panel
 * Includes a bat file for simple packaging
+* Includes a bat file for setting up bpy linting with [fake-bpy-module](https://github.com/nutti/fake-bpy-module)
 
 > [!TIP]
 > Add the Reload Scripts operator to your Quick Favorites menu inside of Blender
+
+## Linting Setup
+Run `setup_linting.bat` to create a local `.venv` with `fake-bpy-module` installed. The included VS Code settings point to this environment and silence the false positives caused by Blender's property annotations (`reportInvalidTypeForm`) and the stub-only bpy module (`reportMissingModuleSource`)
+> [!NOTE]
+> The `.venv` folder is ignored by git and excluded when building the extension
 
 ## How to use the template via GitHub
 1. At the top right corner of the repository page, click Use this template
