@@ -11,7 +11,7 @@ bl_info = {
     # "tracker_url": "https://github.com/{username}/{repo-name}/issues",
     # "warning": "Experimental",
     "support": "COMMUNITY",
-    "category": "Some Category",
+    "category": "Pick a Category",
     # Categories: 3D View, Add Curve, Add Mesh, Animation, Bake, Camera, Compositing,
     # Development, Grease Pencil, Import-Export, Lighting, Material,
     # Mesh, Node, Object, Paint, Physics, Render, Rigging, Scene, Sequencer,
