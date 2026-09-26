@@ -4,7 +4,15 @@
 
 A commented template for multifile add-on development that is fully compliant with the Blender Extensions platform
 
-## Script Directory
+## Table of Contents
+
+- [Using a Script Directory](#using-a-script-directory)
+- [Features](#features)
+- [Linting Setup](#linting-setup)
+- [Packaging](#packaging)
+- [How to use the template via GitHub](#how-to-use-the-template-via-github)
+
+## Using a Script Directory
 
 I recommend placing your add-on inside of a [script directory](https://docs.blender.org/manual/en/latest/editors/preferences/file_paths.html#script-directories) during development for an easy install
 
