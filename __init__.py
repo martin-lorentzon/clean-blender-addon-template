@@ -19,7 +19,7 @@ bl_info = {
 }
 
 
-# NOTE: Edit package.bat and specify the path to your blender.exe file
+# NOTE: Set BLENDER_EXE in package.bat to your blender.exe path (or use the BLENDER_PATH env variable)
 
 
 # ——————————————————————————————————————————————————————————————————————
