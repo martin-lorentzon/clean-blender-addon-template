@@ -6,11 +6,24 @@ A commented template for multifile add-on development that is fully compliant wi
 
 ## Table of Contents
 
-- [Using a Script Directory](#-using-a-script-directory)
 - [Features](#-features)
+- [Using a Script Directory](#-using-a-script-directory)
 - [Linting Setup](#linting-setup)
 - [Packaging](#-packaging)
 - [How to use the template via GitHub](#-how-to-use-the-template-via-github)
+
+## ✨ Features
+
+- Formatted with autopep8
+- Ability to reload in Blender with `bpy.ops.script.reload()`
+- Includes bl_info metadata (for legacy add-on installs)
+- Includes Blender manifest file
+- Includes examples of add-on preferences, property group, operator and panel
+- Includes a bat file for simple packaging
+- Includes a bat file for setting up bpy linting with [fake-bpy-module](https://github.com/nutti/fake-bpy-module)
+
+> [!TIP]
+> Add the Reload Scripts operator to your Quick Favorites menu inside of Blender
 
 ## 📁 Using a Script Directory
 
@@ -25,19 +38,6 @@ Some Local Projects or Tools Folder/
 
 > [!NOTE]
 > Remember to install your newly created script directory in Blender Preferences > File Paths > Script Directories
-
-## 🪄 Features
-
-- Formatted with autopep8
-- Ability to reload in Blender with `bpy.ops.script.reload()`
-- Includes bl_info metadata (for legacy add-on installs)
-- Includes Blender manifest file
-- Includes examples of add-on preferences, property group, operator and panel
-- Includes a bat file for simple packaging
-- Includes a bat file for setting up bpy linting with [fake-bpy-module](https://github.com/nutti/fake-bpy-module)
-
-> [!TIP]
-> Add the Reload Scripts operator to your Quick Favorites menu inside of Blender
 
 ## Linting Setup
 
