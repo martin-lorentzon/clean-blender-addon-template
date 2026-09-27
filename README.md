@@ -19,8 +19,8 @@ A commented template for multifile add-on development that is fully compliant wi
 - Includes bl_info metadata (for legacy add-on installs)
 - Includes Blender manifest file
 - Includes examples of add-on preferences, property group, operator and panel
-- Includes a bat file for simple packaging
 - Includes a bat file for setting up bpy linting with [fake-bpy-module](https://github.com/nutti/fake-bpy-module)
+- Includes a bat file for simple packaging
 
 > [!TIP]
 > Add the Reload Scripts operator to your Quick Favorites menu inside of Blender
